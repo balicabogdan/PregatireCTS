@@ -1,6 +1,7 @@
 package cts.nume.prenume.gNrGrupa.factory;
 
 public class ElectricBike implements IVehicle{
+    //de implem
     @Override
     public String getVehicleId() {
         return "bikeID";
