@@ -1,0 +1,41 @@
+SUBIECTUL 2 (Management consum energie / Smart Home - S10.pdf - Imaginea 1)
+3p. În aplicație trebuie să existe un obiect unic de tip EnergyConsumptionManager, care gestionează centralizat consumul energetic al tuturor dispozitivelor din locuință. Managerul trebuie să rețină un prag maxim de consum și istoricul operațiilor de activare și dezactivare pentru fiecare dispozitiv. Dacă prin activarea unui nou dispozitiv se depășește pragul maxim permis, sistemul trebuie să arunce o excepție.
+
+1.5p. Să se testeze soluția prin:
+
+activarea a cel puțin 2 dispozitive;
+
+afișarea consumului total;
+
+încercarea activării unui dispozitiv care duce la depășirea pragului;
+
+afișarea istoricului operațiilor.
+
+3p. În locuință pot exista mai multe tipuri de dispozitive inteligente, precum SmartLight, SmartThermostat, SmartCamera sau SmartDoorLock. Toate dispozitivele trebuie să implementeze interfața ISmartDevice. Se cere implementarea unui mecanism de creare a dispozitivelor, astfel încât utilizatorul să nu depindă direct de clasele concrete. Se cunoaște faptul că prezenta implementare trebuie să permită în timp adăugarea și de noi dispozitive inteligente.
+
+1.5p. Să se testeze soluția prin: (Notă: Această propoziție este la finalul primei pagini și continuă cu bullet-urile de pe a doua)
+
+crearea a cel puțin 3 tipuri diferite de dispozitive;
+
+apelarea funcțiilor specifice fiecăruia;
+
+integrarea a cel puțin 2 dispozitive în managerul centralizat.
+
+Java
+public interface IEnergyConsumptionManager {
+    void addDevice(ISmartDevice device) throws Exception;
+    void removeDevice(ISmartDevice device) throws Exception;
+    float getCurrentConsumption(); //sum of all powerConsumptions if device is active
+    float getMaxAllowedConsumption();
+    void displayOperationHistory();
+}
+Java
+public interface ISmartDevice {
+    String getDeviceName();
+    String getDeviceType();
+    float getPowerConsumption();
+    boolean isActive();
+    void turnOn();
+    void turnOff();
+    void executeSpecificFunction();
+}

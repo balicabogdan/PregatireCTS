@@ -1,0 +1,68 @@
+SUBIECTUL 1 (Platformă roboți de livrare - S9.pdf - Imaginile 2 și 3)
+Implementările care nu au legătură funcțională cu cerințele din subiect NU vor fi luate în calcul (preluare unui exemplu din alte surse nu va fi punctată).
+
+NU este permisă modificare claselor primite.
+
+Soluțiile vor fi verificate încrucișat folosind MOSS. Nu este permisă partajarea de cod între studenți. Soluțiile care au un grad de similitudine mai mare de 30% vor fi anulate.
+
+Cerințe Clean Code obligatorii (soluția este depunctată cu câte 2 puncte pentru fiecare cerință ce nu este respectată) - maxim se pot pierde 8 puncte
+
+Pentru denumirea claselor, funcțiilor, testelor unitare, atributelor și a variabilelor se respectă convenția de nume de tip Java Mix CamelCase;
+
+Pattern-urile și clasa ce conține metoda main() sunt definite în pachete distincte ce au forma cts.nume.prenume.gNrGrupa.denumire_pattern, cts.nume.prenume.gNrGrupa.main (studenții din anul suplimentar trec "as" în loc de gNrGrupa);
+
+Clasele și metodele sunt implementate respectând principiile KISS, DRY și SOLID (atenție la DIP);
+
+Denumirile de clase, metode, variabile, precum și mesajele afișate la consola trebuie sa aibă legătura cu subiectul primit (nu sunt acceptate denumiri generice). Funcțional, metodele vor afișa mesaje la consola care să simuleze acțiunea cerută sau vor implementa prelucrări simple.
+
+Se dezvoltă o aplicație software destinată gestionării unei platforme de livrare cu roboți autonomi
+
+3p. În sistem există mai multe tipuri de roboți de livrare preconfigurați, folosiți frecvent pentru inițializarea rapidă a unor unități noi. Un robot este reprezentat printr-un obiect de tip DeliveryRobot și conține informații precum: model, capacitate de transport, autonomie, viteză maximă, tip de senzori și set de rute standard. Deoarece definirea completă a unui robot de la zero consumă timp din cauza setului de rute standard, se cere implementarea unui mecanism prin care anumite modele să poată fi reutilizate. Obiectele nou create ulterior pot fi particularizate prin modificarea atributelor.
+
+1.5p. Să se testeze soluția prin:
+
+definirea a cel puțin 2 prototipuri diferite de roboți;
+
+clonarea unuia dintre prototipuri de cel puțin 2 ori;
+
+particularizarea unei clone;
+
+demonstrarea faptului că prototipul inițial rămâne nemodificat.
+
+3p. Fiecare robot poate fi echipat cu un pachet de baterii de tip RobotBatteryPack. Un pachet trebuie să conțină elemente obligatorii precum: batteryName, capacity și voltage. În plus, utilizatorul poate selecta opțional diferite caracteristici precum: fastChargeSupport, coolingSystem, shockProtection, wirelessMonitor sau extendedWarranty. Deoarece nu toate pachetele folosesc aceleași opțiuni suplimentare, se cere implementarea unui mecanism flexibil de construire a obiectelor de tip RobotBatteryPack.
+
+1.5p. Să se testeze soluția prin:
+
+crearea a cel puțin 3 pachete diferite;
+
+un pachet configurat minimal;
+
+un pachet cu exact 2 opțiuni suplimentare;
+
+un pachet cu numărul maxim permis de opțiuni suplimentare.
+
+Java
+public interface IDeliveryRobot {
+    String getModel();
+    float getTransportCapacity();
+    int getAutonomy();
+    float getMaxSpeed();
+    void setModel(String model);
+    void setTransportCapacity(float capacity);
+    void setAutonomy(int autonomy);
+    void setMaxSpeed(float maxSpeed);
+    void addStandardRoute(String route);
+    void displayRobotInfo();
+}
+Java
+public interface InterfaceRobotBatteryPack {
+    String getBatteryName();
+    int getCapacity();
+    float getVoltage();
+    boolean hasFastChargeSupport();
+    boolean hasCoolingSystem();
+    boolean hasShockProtection();
+    boolean hasWirelessMonitor();
+    boolean hasExtendedWarranty();
+    float getKmRange(IDeliveryRobot robot);
+}
